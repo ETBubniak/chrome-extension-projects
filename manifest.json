@@ -1,6 +1,7 @@
 {
     "manifest_version": 2,
     "name": "Evan's Comic Scraper",
+    "author": "Evan Bubniak",
     "version": "1.0",
     
     "description": "Scrape Evan's favorite comics and display the most up-to-date versions on the New Tab page",
