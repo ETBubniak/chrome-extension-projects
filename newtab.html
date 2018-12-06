@@ -6,11 +6,15 @@
             <script type="text/javascript" src="newtab.js" charset="utf-8"></script>
     </head>
     <body>
-        <h1>Some XKCD Comics</h1>
-        <div id="xkcdimg0"></div>
-        <div id="xkcdimg1"></div>
-        <div id="xkcdimg2"></div>
-        <div id="xkcdimg3"></div>
-        <div id="xkcdimg4"></div>
+        <form>
+            Choose how many comics you want to display:<br>
+            <input type="number" name="numberOfComics" value=5 id="numberOfComics">
+            <input type="submit" value="Submit" id="submitButton">
+        </form>
+        
+        <h1 id='header1'>Some XKCD Comics</h1>
+        <div id="imageContainer"></div>
+        
+        <p>Made by Bubsy (Evan Bubniak)</p>
     </body>
 </html>
