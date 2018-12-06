@@ -1,0 +1,18 @@
+{
+    "manifest_version": 2,
+    "name": "Evan's Comic Scraper",
+    "version": "1.0",
+    
+    "description": "Scrape Evan's favorite comics and display the most up-to-date versions on the New Tab page",
+    
+    "permissions": [
+        "activeTab",
+        "tabs",
+        "http://xkcd.com/*",
+        "https://xkcd.com/*"
+    ],    
+    "chrome_url_overrides": {
+        "newtab":"newtab.html"
+    }
+
+}
