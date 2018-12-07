@@ -17,7 +17,10 @@ function getImages() {
                 let i;
                 for (i=1; i<=numberOfComics;i++){
                     let j = i;
-                    var comicNumber = Math.floor((Math.random()*currentComicNumber) + 1);
+                    var comicNumber;
+                    do{
+                        comicNumber = Math.floor((Math.random()*currentComicNumber) + 1)
+                    }while(comicNumber == 404);
                     $.ajax({
                         url: "http://xkcd.com/" + comicNumber + "/info.0.json",
                         dataType: "json",
