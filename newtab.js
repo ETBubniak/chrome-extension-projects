@@ -18,10 +18,7 @@ function getImages() {
                     url: "http://xkcd.com/" + comicNumber + "/info.0.json",
                     dataType: "json",
                     success: function(input) {
-                        document.getElementById("imageContainer").innerHTML += "<img src=\"" + input.img + "\" <br><hr>"; 
-                        var image = document.createElement("div");
-                        image.setAttribute("id", "xkcdimg" + String(j));
-                        image.setAttribute("src", input.img);
+                        document.getElementById("imageContainer").innerHTML += "<img src=\"" + input.img + "\" <br><p>\"" + input.alt + "\"</p><hr>"; 
                     }
                 })
             //console.log(input.img);
