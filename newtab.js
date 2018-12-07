@@ -1,4 +1,7 @@
 function getImages() {    
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+                            "July", "August", "September", "October", "November", "December"
+                       ];
     var numberOfComics = parseInt($("#numberOfComics").val());
     document.getElementById("imageContainer").innerHTML = "";
     var currentComicNumber;
@@ -33,7 +36,8 @@ function getImages() {
                 for (i=0; i<comicObjects.length; i++){
                     console.log("completed");
                     let j = i;
-                    document.getElementById("imageContainer").innerHTML += "<img src=\"" + comicObjects[j].img + "\" <br><p>\"" + comicObjects[j].alt + "\"</p><hr>"
+                    let dateString = ("" + monthNames[comicObjects[j].month] + " " + comicObjects[j].day + ", " + comicObjects[j].year);
+                    document.getElementById("imageContainer").innerHTML += dateString +  "<br><img src=\"" + comicObjects[j].img + "\" <br><p>\"" + comicObjects[j].alt + "\"</p><hr>"
                 }
             }
         })
