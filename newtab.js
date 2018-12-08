@@ -39,8 +39,8 @@ function getImages() {
                 for (i=0; i<comicObjects.length; i++){
                     console.log("completed");
                     let j = i;
-                    let dateString = ("" + monthNames[comicObjects[j].month] + " " + comicObjects[j].day + ", " + comicObjects[j].year);
-                    document.getElementById("imageContainer").innerHTML += dateString +  "<br><img src=\"" + comicObjects[j].img + "\" <br><p>\"" + comicObjects[j].alt + "\"</p><hr>"
+                    let dateString = ("" + monthNames[comicObjects[j].month - 1] + " " + comicObjects[j].day + ", " + comicObjects[j].year);
+                    document.getElementById("imageContainer").innerHTML += "<time>" + dateString + "</time><br><h2>" + comicObjects[j].safe_title + "</h2><img src=\"" + comicObjects[j].img + "\" <br><p>\"" + comicObjects[j].alt + "\"</p><hr>"
                 }
             }
         })
