@@ -72,7 +72,7 @@ function loadObjects(totalComicNumber){
 
 
 
-    numberOfImages = parseInt($("#numberOfComics").val());
+    numberOfImages = parseInt(document.getElementById("numberOfComics").value);
     document.getElementById("imageContainer").innerHTML = "";
     const arrayOfUrls = loadUrls(numberOfImages);
     arrayOfPromises = loadPromises(arrayOfUrls);
