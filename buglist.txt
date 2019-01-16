@@ -1,0 +1,1 @@
+- alt-text with non-English characters does not work properly. See XKCD 1941, "dying wish", for an example.
