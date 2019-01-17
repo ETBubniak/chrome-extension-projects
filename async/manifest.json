@@ -13,7 +13,7 @@
         "https://xkcd.com/*"
     ],    
     "chrome_url_overrides": {
-        "newtab":"newtab.html"
+        "newtab":"newtab_async.html"
     }
 
 }
