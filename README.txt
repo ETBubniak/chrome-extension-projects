@@ -1,3 +1,3 @@
-- modify the HTML file to use "newtab_sync.js" if you want to use it synchronously.
+The synchronous extension is there for purposes of showing how synchronous requested are made, and for instruction purposes - however it is deprecated and represents a suboptimal user experience (synchronous web requests cause browser to hang while the request completes).
 
-It still has to be fixed to work though since I've gotten rid of jQuery from the project.
+Use the async one, even though sync is there for posterity.
