@@ -37,35 +37,30 @@ function getUrlFromUrlResults(urlResults){
 // this function returns a Promise and is async.
 // it resolves to the list of URLs to return.
 function getUrlsfromFolder(folderID){
-    const urlsToReturn = [];
+    var urlsToReturn = [];
     return new Promise(function(resolve, reject) {
         getContentsOfFolder(folderID)
         .then(function fulfilled(results) {
             const [urlResults, folderResults] = separateIntoUrlsAndFolders(results);
             urlsToReturn.push(getUrlFromUrlResults(urlResults));
+            for (let folder of folderResults) {
+                getUrlsfromFolder(folder.id)
+                    .then(function fulfilled(data){
+                        urlsToReturn = urlsToReturn.concat(data);
+                    });
+            }
             resolve(urlsToReturn);
         });
     });
 
-    /*
-    const urlsToReturn = [];
-    getContentsOfFolder(folderID)
-        .then(function fulfilled(results){
-            const [urlResults, folderResults] = separateIntoUrlsAndFolders(results);
-            urlsToReturn.push(getUrlFromUrlResults(urlResults));
-            for (let folder in folderResults){
-                urlsToReturn = urlsToReturn.concat(getUrlsfromFolder(folder.id))
-            }
-            return urlsToReturn;
-        })
-    */
 }
 
 function openBookmarks(urlsToOpen){
     for (let url of urlsToOpen){
-        chrome.tabs.create({
+/*        chrome.tabs.create({
             "url": url 
-        });
+        }); */
+        console.log(url);
     }
 }
 
