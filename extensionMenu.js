@@ -3,12 +3,16 @@ function getTargetFolderID() {
     return String(newsFolderID);
 }
 
+// this function returns a Promise and so should be considered async.
 function getContentsOfFolder(folderID){
-    const ID = folderID;
-    chrome.bookmarks.getChildren(ID,
-        (results) => {
-            return results;
-        });
+    return new Promise(function(resolve, reject) {
+        chrome.bookmarks.getChildren(folderID,
+            (results) => {
+                console.log(results);
+                resolve(results);
+            });
+    });
+
 }
 
 function separateIntoUrlsAndFolders(results){
@@ -26,24 +30,41 @@ function separateIntoUrlsAndFolders(results){
 }
 
 function getUrlFromUrlResults(urlResults){
-    const randomIndex = Math.floor((Math.random()*urlResults.length) + 1)
+    const randomIndex = Math.floor((Math.random()*urlResults.length));
     const urlToAdd = urlResults[randomIndex].url;
     return urlToAdd;
 }
 
+// this function returns a Promise and is async.
+// it resolves to the list of URLs to return.
 function getUrlsfromFolder(folderID){
     const urlsToReturn = [];
-    const results = getContentsOfFolder(folderID);
-    const [urlResults, folderResults] = separateIntoUrlsAndFolders(results);
-    urlsToReturn.push(getUrlFromUrlResults(urlResults));
-    for (let folder in folderResults){
-        urlsToReturn = urlsToReturn.concat(getUrlsfromFolder(folder.id))
-    }
-    return urlsToReturn;
+    return new Promise(function(resolve, reject) {
+        getContentsOfFolder(folderID)
+        .then(function fulfilled(results) {
+            const [urlResults, folderResults] = separateIntoUrlsAndFolders(results);
+            console.log(urlResults);
+            urlsToReturn.push(getUrlFromUrlResults(urlResults));
+            resolve(urlsToReturn);
+        });
+    });
+
+    /*
+    const urlsToReturn = [];
+    getContentsOfFolder(folderID)
+        .then(function fulfilled(results){
+            const [urlResults, folderResults] = separateIntoUrlsAndFolders(results);
+            urlsToReturn.push(getUrlFromUrlResults(urlResults));
+            for (let folder in folderResults){
+                urlsToReturn = urlsToReturn.concat(getUrlsfromFolder(folder.id))
+            }
+            return urlsToReturn;
+        })
+    */
 }
 
 function openBookmarks(urlsToOpen){
-    for (let url of arrayOfUrls){
+    for (let url of urlsToOpen){
         chrome.tabs.create({
             "url": url 
         });
@@ -52,9 +73,10 @@ function openBookmarks(urlsToOpen){
 
 function main() {
     const newsFolderID = getTargetFolderID();
-    const urlsToOpen = [];
-    urlsToOpen = urlsToOpen.concat(getUrlsfromFolder(newsFolderID));
-    openBookmarks(urlsToOpen);
+    getUrlsfromFolder(newsFolderID)
+        .then(function fulfilled(urlsToOpen){
+            openBookmarks(urlsToOpen);
+        })
 }
 
 window.onload = () => {
