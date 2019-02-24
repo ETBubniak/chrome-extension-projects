@@ -1,0 +1,14 @@
+{
+    "name": "Open News Tabs",
+    "version": "0.01",
+    "description": "Opens random tabs from a folder",
+    "manifest_version": 2,
+    "author": "Evan Bubniak",
+    "browser_action": {
+        "default_title": "Open News Tabs",
+        "default_popup": "extensionMenu.html"
+    },
+    "permissions": [
+        "bookmarks"
+    ]
+}
