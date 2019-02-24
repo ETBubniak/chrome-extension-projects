@@ -11,7 +11,6 @@ function getContentsOfFolder(folderID){
                 resolve(results);
             });
     });
-
 }
 
 function separateIntoUrlsAndFolders(results){
@@ -43,13 +42,16 @@ function getUrlsfromFolder(folderID){
         .then(function fulfilled(results) {
             const [urlResults, folderResults] = separateIntoUrlsAndFolders(results);
             urlsToReturn.push(getUrlFromUrlResults(urlResults));
-            for (let folder of folderResults) {
-                getUrlsfromFolder(folder.id)
-                    .then(function fulfilled(data){
-                        urlsToReturn = urlsToReturn.concat(data);
-                    });
+            const promiseArray = [];
+            for (let folder of folderResults){
+                promiseArray.push(getUrlsfromFolder(folder.id));
             }
-            resolve(urlsToReturn);
+
+            Promise.all(promiseArray)
+            .then(function fulfilled(data){
+                urlsToReturn = urlsToReturn.concat(...data);
+                resolve(urlsToReturn);
+            })
         });
     });
 
@@ -57,10 +59,9 @@ function getUrlsfromFolder(folderID){
 
 function openBookmarks(urlsToOpen){
     for (let url of urlsToOpen){
-/*        chrome.tabs.create({
+        chrome.tabs.create({
             "url": url 
-        }); */
-        console.log(url);
+        });
     }
 }
 
