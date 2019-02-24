@@ -1,5 +1,5 @@
 function getTargetFolderID() {
-    const newsFolderID = 110;
+    const newsFolderID = document.getElementById("folderID").value;
     return String(newsFolderID);
 }
 
