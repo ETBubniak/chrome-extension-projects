@@ -62,9 +62,11 @@ function getUrlsfromFolder(folderID){
 function openBookmarks(urlsToOpen){
     for (let url of urlsToOpen){
         chrome.tabs.create({
-            "url": url 
+            "url": url,
+            "active": false
         });
     }
+
 }
 
 function main() {

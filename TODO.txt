@@ -1,0 +1,3 @@
+- Need to add functionality for picking a folder (and perhaps remembering that folder!)
+
+But how?
