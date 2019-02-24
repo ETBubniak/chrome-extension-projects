@@ -41,7 +41,7 @@ function getUrlsfromFolder(folderID){
         getContentsOfFolder(folderID)
         .then(function fulfilled(results) {
             const [urlResults, folderResults] = separateIntoUrlsAndFolders(results);
-            if (urlResults) {
+            if (!(urlResults === undefined || urlResults.length == 0)) {
                 urlsToReturn.push(getUrlFromUrlResults(urlResults));
             }
             const promiseArray = [];
