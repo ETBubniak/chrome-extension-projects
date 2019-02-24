@@ -8,7 +8,6 @@ function getContentsOfFolder(folderID){
     return new Promise(function(resolve, reject) {
         chrome.bookmarks.getChildren(folderID,
             (results) => {
-                console.log(results);
                 resolve(results);
             });
     });
@@ -43,7 +42,6 @@ function getUrlsfromFolder(folderID){
         getContentsOfFolder(folderID)
         .then(function fulfilled(results) {
             const [urlResults, folderResults] = separateIntoUrlsAndFolders(results);
-            console.log(urlResults);
             urlsToReturn.push(getUrlFromUrlResults(urlResults));
             resolve(urlsToReturn);
         });
