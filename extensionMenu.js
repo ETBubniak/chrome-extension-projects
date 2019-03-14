@@ -10,7 +10,7 @@ function removeSpaces(tabRangeInput){
 
 // 
 function inputToArray(formattedTabRangeInput, separator) {
-    const splitInput = formattedTabRangeInput.split(',');
+    const splitInput = formattedTabRangeInput.split(separator);
     return splitInput;
 }
 
@@ -70,8 +70,8 @@ function expandArray(tabArray){
     return expandedArray;
 }
 
-function handleMultiple(formattedTabRangeInput){
-    const tabArray = inputToArray(formattedTabRangeInput);
+function handleMultiple(formattedTabRangeInput, separator){
+    const tabArray = inputToArray(formattedTabRangeInput, separator);
     const expandedInput = expandArray(tabArray);
     return expandedInput;
 }
