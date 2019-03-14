@@ -92,7 +92,7 @@ function getTabIndices(formattedTabRangeInput){
     return tabIndices.map((index) => {return (index-1);});
 }
 
-//This function is async.
+//This function makes an async call.
 function queryTabFromIndex(index){
     return new Promise((resolve, reject) =>{
         chrome.tabs.query({
@@ -102,7 +102,7 @@ function queryTabFromIndex(index){
     });
 }
 
-// This function is async because it calls queryTabFromIndex.
+// This function is async because it calls queryTabFromIndex, which makes an async call.
 async function getIdsFromIndices(tabIndices) {
     const tabIds = [];
     for (index of tabIndices) {
@@ -127,6 +127,7 @@ function closeTabs(tabIds){
     chrome.tabs.remove(tabIds);
 }
 
+//this function is async because getIdsFromIndices makes an async call.
 async function main() {
     const tabRangeInput = getInput();
     if (tabRangeInput === "all"){
